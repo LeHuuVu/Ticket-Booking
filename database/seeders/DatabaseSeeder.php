@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET session_replication_role = \'replica\';');
+        
         DB::statement("SET foreign_key_checks=0");
         $databaseName = DB::getDatabaseName();
         $tables = DB::select("SELECT * FROM information_schema.tables WHERE table_schema = '$databaseName'");
@@ -40,5 +42,6 @@ class DatabaseSeeder extends Seeder
             MovieSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
+        DB::statement('SET session_replication_role = \'origin\';');
     }
 }
