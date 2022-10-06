@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,9 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//         Schema::disableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
         
-        DB::statement("SET foreign_key_checks=0");
+//         DB::statement("SET foreign_key_checks=0");
         $databaseName = DB::getDatabaseName();
         $tables = DB::select("SELECT * FROM information_schema.tables WHERE table_schema = '$databaseName'");
         foreach ($tables as $table) {
@@ -41,7 +42,7 @@ class DatabaseSeeder extends Seeder
             MovieSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
-//         Schema::enableForeignKeyConstraints();
-        DB::statement("SET foreign_key_checks=1");
+//         DB::statement("SET foreign_key_checks=1");
+        Schema::enableForeignKeyConstraints();
     }
 }
