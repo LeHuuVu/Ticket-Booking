@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints()
         
-        DB::statement("SET foreign_key_checks=0");
+        //DB::statement("SET foreign_key_checks=0");
         $databaseName = DB::getDatabaseName();
         $tables = DB::select("SELECT * FROM information_schema.tables WHERE table_schema = '$databaseName'");
         foreach ($tables as $table) {
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             }
             DB::table($name)->truncate();
         }
-        DB::statement("SET foreign_key_checks=1");
+        //DB::statement("SET foreign_key_checks=1");
 
         $this->call([
             PermissionSeeder::class,
