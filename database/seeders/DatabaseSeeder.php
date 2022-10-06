@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
+//         Schema::disableForeignKeyConstraints();
         
         DB::statement("SET foreign_key_checks=0");
         $databaseName = DB::getDatabaseName();
@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
             }
             DB::table($name)->truncate();
         }
-        DB::statement("SET foreign_key_checks=1");
 
         $this->call([
             PermissionSeeder::class,
@@ -42,6 +41,7 @@ class DatabaseSeeder extends Seeder
             MovieSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
-        Schema::enableForeignKeyConstraints();
+//         Schema::enableForeignKeyConstraints();
+        DB::statement("SET foreign_key_checks=1");
     }
 }
