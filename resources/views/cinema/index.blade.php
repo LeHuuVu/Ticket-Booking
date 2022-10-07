@@ -149,14 +149,17 @@
                         let dateCmp = new Date(data.movies[key].schedules[x].start_at)
                         if ((dateCmp.getDate()) == dates[index].getDate()){
                             let t = document.createElement('a');
-                            var role_id = "{{Auth::user()->role_id}}"
-                            if(role_id == {{\App\Models\User::ROLE_CUSTOMER}})
+                            if({{Auth::user()->role_id}} != null)
                             {
-                                t.setAttribute('href','/booking-ticket/'+data.movies[key].schedules[x].id)
-                            }
-                            if(role_id == {{\App\Models\User::ROLE_MANAGER}} || role_id == {{\App\Models\User::ROLE_ADMIN}})
-                            {
-                                t.setAttribute('href',"/schedule/"+data.movies[key].schedules[x].id+"/edit")
+                                var role_id = "{{Auth::user()->role_id}}"
+                                if(role_id == {{\App\Models\User::ROLE_CUSTOMER}})
+                                {
+                                    t.setAttribute('href','/booking-ticket/'+data.movies[key].schedules[x].id)
+                                }
+                                if(role_id == {{\App\Models\User::ROLE_MANAGER}} || role_id == {{\App\Models\User::ROLE_ADMIN}})
+                                {
+                                    t.setAttribute('href',"/schedule/"+data.movies[key].schedules[x].id+"/edit")
+                                }
                             }
                             
                             t.setAttribute('class','btn');
