@@ -149,8 +149,7 @@
                         let dateCmp = new Date(data.movies[key].schedules[x].start_at)
                         if ((dateCmp.getDate()) == dates[index].getDate()){
                             let t = document.createElement('a');
-                            if({{Auth::check()? 'true' : 'false'}} == 'true')
-                            {
+                            @auth
                                 var role_id = "{{Auth::user()->role_id}}"
                                 if(role_id == {{\App\Models\User::ROLE_CUSTOMER}})
                                 {
@@ -160,7 +159,7 @@
                                 {
                                     t.setAttribute('href',"/schedule/"+data.movies[key].schedules[x].id+"/edit")
                                 }
-                            }
+                            @endauth
                             
                             t.setAttribute('class','btn');
                             t.innerHTML = data.movies[key].schedules[x].play_time;
