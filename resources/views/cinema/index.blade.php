@@ -149,7 +149,7 @@
                         let dateCmp = new Date(data.movies[key].schedules[x].start_at)
                         if ((dateCmp.getDate()) == dates[index].getDate()){
                             let t = document.createElement('a');
-                            if({{Auth::user()}} != null)
+                            if({{Auth::check()}})
                             {
                                 var role_id = "{{Auth::user()->role_id}}"
                                 if(role_id == {{\App\Models\User::ROLE_CUSTOMER}})
